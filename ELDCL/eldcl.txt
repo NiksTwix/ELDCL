@@ -1,0 +1,40 @@
+//ELDCL - EndLoad Data Containing Language
+// block of data declaration.
+// Container has fields and can contain other containers
+//Syntax example
+tag::constants SContainer
+{
+	Key: 200;	//Field
+	Keys: ["list"];
+	String: "
+		For EndLoad Engine v0.2
+	";
+	ConstantNumber: SContainer::Key * 1200;
+}
+
+tag::container Container1 	//Tag "container" sets explicitly
+{
+	ConstantKey: SContainer::Key;
+	ConstantNumber: SContainer::Key * 200; 	//Handle by alu stack machine
+}
+//Or
+Container1 //Tag "container" sets automaticaly
+{
+}
+
+KEY1: 10;
+
+tag::entity Entity10	//Entity + ID - its name
+{
+	copy Container1;	//Copy fields from Container1, new field override old
+	copy SContainer;	//Last copied container always win
+	key Name = "123243";	//Create key field which replace name of block in the hashmap-tree
+	ID: 10;
+	PARENT_ID: 2;
+	tag::component Transform
+	{
+		Origin: [10.0,20.0,3.04];
+		ID: KEY1; 	//Similar to ELScript, we go up the container table and look for the first KEY1 we encounter.
+	}
+}
+
