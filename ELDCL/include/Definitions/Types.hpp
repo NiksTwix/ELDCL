@@ -149,8 +149,11 @@ namespace DCL
             case ARRAY:
                 for (auto l : *arrayVal)
                 {
-                    result += l.ToString() + " ";
+                    
+                    result += l.ToString() + ",";
+                    
                 }
+                if (result.back() == ',')result.pop_back();
                 return result;
 
             default:

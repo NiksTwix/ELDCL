@@ -133,6 +133,7 @@
     <ClInclude Include="include\Definitions\StringOperations.hpp" />
     <ClInclude Include="include\Definitions\Types.hpp" />
     <ClInclude Include="include\Loading\Loader.hpp" />
+    <ClInclude Include="include\Serialization\Serializator.hpp" />
     <ClInclude Include="include\Tokenization\Lexer.hpp" />
     <ClInclude Include="include\Tokenization\TokensInfo.hpp" />
   </ItemGroup>

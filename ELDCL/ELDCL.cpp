@@ -3,6 +3,7 @@
 
 #include "include/Tokenization/Lexer.hpp"
 #include "include/Loading\Loader.hpp"
+#include "include/Serialization\Serializator.hpp"
 //ELDCL - EndLoad Data Containing Language
 
 int main()
@@ -19,16 +20,12 @@ tag::constants SContainer
 	ConstantNumber: Key;
 	ConstantNumber1: Key1;
 }
-
 tag::container Container1 	//Tag "container" sets explicitly
 {
 	ConstantKey: SContainer::Key;
 	ConstantNumber: SContainer::ConstantNumber1; 	//Handle by alu stack machine
 }
-
-
 KEY1: 10;
-
 tag::entity Entity10
 {
 	copy SContainer;
@@ -50,17 +47,13 @@ tag::entity Entity10
 			
 		}	
 }
-	
-
-
-	
 	)L";
-	//DCL::Lexer::Get().SetDebugMode(true);
-
 	auto ct = DCL::Loader::LoadFromString(code);
-	ct->PrintFields();
+	auto t = DCL::Serializator::Get().Serialize(ct);
+	std::cout << t << "\n";
+	auto ct1 = DCL::Loader::LoadFromString(t);
+	ct1->PrintFields();
 
-	std::cout << ct->GetField("Entity10::ConstantNumber").numberVal;
 	//DCL::ContainersTree ct;
 	//ct.GetField("key::234::234::234::234");
 }

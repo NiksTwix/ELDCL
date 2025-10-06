@@ -41,6 +41,9 @@
     <ClInclude Include="include\Loading\Loader.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="include\Serialization\Serializator.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="eldcl.txt">

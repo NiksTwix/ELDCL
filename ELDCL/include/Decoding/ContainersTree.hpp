@@ -131,5 +131,11 @@ namespace DCL
 				PrintField(f);
 			}
 		}
+
+
+        std::vector<Field>& GetGlobalFields() 
+        {
+            return global_fields;
+        }
 	};
 }
