@@ -27,6 +27,9 @@ namespace DCL
         Field* key;
 
         Field* FindField(const std::string& name);
+
+        std::unordered_map<std::string, Field*> FindFields(const std::vector<std::string>& field_names);
+
     };
 
     struct Value {          //Took from ELScript
@@ -266,5 +269,21 @@ namespace DCL
         }
         return nullptr;
     }
-    
+    std::unordered_map<std::string, Field*> Container::FindFields(const std::vector<std::string>& field_names)
+    {
+        std::unordered_map<std::string, Field*> result;
+
+        // Однопроходная оптимизация
+        for (const auto& name : field_names) {
+            for (auto& field : ordered_fields) {
+                if (field.name == name) {
+                    result[name] = &field;
+                    break;
+                }
+            }
+            // Если не нашли - не добавляем в результат (или можно добавить nullptr)
+        }
+
+        return result;
+    }
 }

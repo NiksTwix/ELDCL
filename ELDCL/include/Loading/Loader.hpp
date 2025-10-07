@@ -1,6 +1,8 @@
 #pragma once
 #include "..\Decoding\Decoder.hpp"
+#include "..\Tokenization\Lexer.hpp"
 #include <fstream>
+
 
 namespace DCL 
 {

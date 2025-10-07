@@ -13,7 +13,7 @@ tag::constants SContainer
 {
 	Key: 200;	//Field
 	Key1: 20023;	//Field
-	Keys: ["list"];
+	Keys: ["list","234",true,false];
 	String: "
 		For EndLoad Engine v0.2
 	";
