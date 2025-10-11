@@ -26,9 +26,9 @@ namespace DCL
 
         Field* key;
 
-        Field* FindField(const std::string& name);
+        inline Field* FindField(const std::string& name);
 
-        std::unordered_map<std::string, Field*> FindFields(const std::vector<std::string>& field_names);
+        inline std::unordered_map<std::string, Field*> FindFields(const std::vector<std::string>& field_names);
 
     };
 
@@ -262,14 +262,14 @@ namespace DCL
         }
     };
 
-    Field* Container::FindField(const std::string& name)
+    inline Field* Container::FindField(const std::string& name)
     {
         for (auto& field : ordered_fields) {
             if (field.name == name) return &field;
         }
         return nullptr;
     }
-    std::unordered_map<std::string, Field*> Container::FindFields(const std::vector<std::string>& field_names)
+    inline std::unordered_map<std::string, Field*> Container::FindFields(const std::vector<std::string>& field_names)
     {
         std::unordered_map<std::string, Field*> result;
 

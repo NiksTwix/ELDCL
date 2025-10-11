@@ -9,8 +9,7 @@
 int main()
 {
     std::string code = R"L(
-tag::constants SContainer
-{
+tag::constants SContainer{
 	Key: 200;	//Field
 	Key1: 20023;	//Field
 	Keys: ["list","234",true,false];
