@@ -128,6 +128,7 @@
     <ClCompile Include="ELDCL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\DCL.hpp" />
     <ClInclude Include="include\Decoding\ContainersTree.hpp" />
     <ClInclude Include="include\Decoding\Decoder.hpp" />
     <ClInclude Include="include\Definitions\StringOperations.hpp" />
