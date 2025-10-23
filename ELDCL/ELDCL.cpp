@@ -48,10 +48,10 @@ tag::entity Entity10
 }
 	)L";
 	auto ct = DCL::Loader::LoadFromString(code);
-	auto t = DCL::Serializator::Get().Serialize(ct);
+	auto t = DCL::Serializator::Get().Serialize(ct->GetField("Entity10")->container);
 	std::cout << t << "\n";
 	auto ct1 = DCL::Loader::LoadFromString(t);
-	ct1->PrintFields();
+	//ct1->PrintFields();
 
 	//DCL::ContainersTree ct;
 	//ct.GetField("key::234::234::234::234");

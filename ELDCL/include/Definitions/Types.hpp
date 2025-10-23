@@ -41,9 +41,6 @@ namespace DCL
         };
         std::string strVal;   // For strings
         std::shared_ptr<std::vector<Value>> arrayVal; // For arrays
-
-        std::shared_ptr<Container> containerVal; // For containers
-
         // Конструкторы
         Value() : type(ValueType::VOID), numberVal(0) {}
 

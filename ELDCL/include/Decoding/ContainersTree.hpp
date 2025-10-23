@@ -17,13 +17,13 @@ namespace DCL
 
 		//KEY::A::B
         // Поиск поля по абсолютному пути "Container::Field"
-        Value GetField(const std::string& absolute_path) const {
+        Field* GetField(const std::string& absolute_path) {
             auto path_parts = StringOperations::SplitString(absolute_path, "::");
-            if (path_parts.empty()) return Value();
+            if (path_parts.empty()) return nullptr;
 
             // Ищем стартовый контейнер в глобальных полях
-            const Field* current_field = nullptr;
-            for (const auto& field : global_fields) {
+            Field* current_field = nullptr;
+            for (Field& field : global_fields) {
                 if (field.name == path_parts[0] && field.isContainer) {
                     current_field = &field;
                     break;
@@ -31,34 +31,34 @@ namespace DCL
             }
 
             if (!current_field || !current_field->container) {
-                return Value(); // Контейнер не найден
+                return nullptr; // Контейнер не найден
             }
 
             // Идём по цепочке контейнеров
-            auto current_container = current_field->container;
+            auto current_container = current_field;
             for (size_t i = 1; i < path_parts.size(); i++) {
                 if (i == path_parts.size() - 1) {
                     // Последняя часть - ищем поле
-                    for (const auto& field : current_container->ordered_fields) {
+                    for (auto& field : current_container->container->ordered_fields) {
                         if (field.name == path_parts[i] && !field.isContainer) {
-                            return field.value;
+                            return &field;
                         }
                     }
                 }
                 else {
                     // Промежуточная часть - ищем контейнер
                     bool found = false;
-                    for (const auto& field : current_container->ordered_fields) {
+                    for (auto& field : current_container->container->ordered_fields) {
                         if (field.name == path_parts[i] && field.isContainer && field.container) {
-                            current_container = field.container;
+                            current_container = &field;
                             found = true;
                             break;
                         }
                     }
-                    if (!found) return Value();
+                    if (!found) return nullptr;
                 }
             }
-            return Value();
+            return current_container;
         }
 
 

@@ -20,7 +20,15 @@ namespace DCL
             SerializeContainer(ss, tree->GetGlobalFields(), 0);
             return ss.str();
         }
-
+        std::string Serialize(std::shared_ptr<Container> container)
+        {
+            if (!container) return "";
+            std::stringstream ss;
+            ss << "tag::" << container->tag << " " << container->name << "\n{\n";
+            SerializeContainer(ss, container->ordered_fields, 0);
+            ss << "}";
+            return ss.str();
+        }
     private:
         void SerializeContainer(std::stringstream& ss,
             const std::vector<Field>& fields,
